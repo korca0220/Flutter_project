@@ -12,6 +12,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool _isPressed = true;
+  int _count = 41;
+
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
@@ -43,11 +46,12 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
           /*3*/
-          Icon(
-            Icons.star,
+          IconButton(
+            onPressed: pressedStar,
+            icon: (_isPressed ? Icon(Icons.star): Icon(Icons.star_border)),
             color: Colors.red[500],
           ),
-          Text('41'),
+          Text('$_count'),
         ],
       ),
     );
@@ -120,5 +124,16 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
     );
+  }
+  void pressedStar(){
+    setState(() {
+      if (_isPressed){
+        _isPressed = false;
+        _count -= 1;
+      }else{
+        _isPressed = true;
+        _count += 1;
+      }
+    });
   }
 }
