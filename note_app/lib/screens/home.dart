@@ -16,26 +16,32 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left:20, top: 20, bottom: 20),
+                child: Text(
+                  '메모메모',
+                  style: TextStyle(
+                      fontSize: 36,
+                      color: Colors.blue
+                  ),
+                ),
+              )
+            ],
+          ),
+          ...LoadMemo(),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         // TODO : EditPage 함수 작성 (screens/edit.dart)
         onPressed: (){
           Navigator.push(
-            context,
-            CupertinoPageRoute(builder: (context) => EditPage())
+              context,
+              CupertinoPageRoute(builder: (context) => EditPage())
           );
         },
         tooltip: '메모를 추가하려면 클릭하세요',
@@ -44,4 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+  List<Widget> LoadMemo() {
+    List<Widget> memoList = [];
+    memoList.add(Container(color: Colors.redAccent, height: 120,));
+    memoList.add(Container(color: Colors.orange, height: 120,));
+    return memoList;
+  }
 }
+
+
