@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:note_app/database/db.dart';
 import 'package:note_app/database/memo.dart';
 
+import 'package:crypto/crypto.dart';
+import 'dart:convert'; // for the utf8.encode method
+
+
 class EditPage extends StatelessWidget {
   String title = '';
   String text = '';
@@ -50,8 +54,7 @@ class EditPage extends StatelessWidget {
     DBHelper sd = DBHelper();
 
     var fido = Memo(
-      // TODO : id 필드는 랜덤하게 생성
-        id: 1,
+        id: Str2Sha256(DateTime.now().toString()),
         title: this.title,
         text: this.text,
         create_time: DateTime.now().toString(),
@@ -62,5 +65,12 @@ class EditPage extends StatelessWidget {
 
     // Log 확인용
     print(await sd.memos());
+  }
+
+  String Str2Sha256(String text){
+    var bytes = utf8.encode(text);
+    var digest = sha512.convert(bytes);
+
+    return digest.toString();
   }
 }
