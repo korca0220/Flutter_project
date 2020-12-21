@@ -37,7 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        // TODO : EditPage 함수 작성 (screens/edit.dart)
         onPressed: (){
           Navigator.push(
               context,
