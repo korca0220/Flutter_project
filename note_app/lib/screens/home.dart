@@ -133,11 +133,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Text(memo.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w500)),
                         Text(
                           memo.text,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontSize: 15),
+                          maxLines: 1,
                         ),
                         Text(
                           "최종 수정 시간 : " + memo.edit_time.split('.')[0],

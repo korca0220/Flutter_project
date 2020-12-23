@@ -13,6 +13,7 @@ class EditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         actions: <Widget>[
           IconButton(icon: const Icon(Icons.delete), onPressed: () {}),
@@ -30,7 +31,7 @@ class EditPage extends StatelessWidget {
                   },
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
                   keyboardType: TextInputType.multiline,
-                  maxLines: null,
+                  maxLines: 5,
                   decoration: InputDecoration(
                       hintText: '제목을 적어주세요'
                   )
@@ -41,7 +42,7 @@ class EditPage extends StatelessWidget {
                     this.text = text;
                   },
                   keyboardType: TextInputType.multiline,
-                  maxLines: null,
+                  maxLines: 12,
                   decoration: InputDecoration(
                       hintText: '메모의 내용을 적어주세요'
                   )
