@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'edit.dart';
+
+import 'package:note_app/screens/edit.dart';
+import 'package:note_app/screens/view.dart';
 
 import 'package:note_app/database/memo.dart';
 import 'package:note_app/database/db.dart';
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -15,6 +18,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String deleteId = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.blue)),
                 alignment: Alignment.centerLeft,
               )),
-          Expanded(child: memoBuilder())
+          Expanded(child: memoBuilder(context))
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -55,7 +60,39 @@ class _MyHomePageState extends State<MyHomePage> {
     await sd.deleteMemo(id);
   }
 
-  Widget memoBuilder() {
+  void showAlertDialog(BuildContext context) async {
+    String result = await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title : Text("삭제 경고"),
+            content: Text("정말 삭제하시겠습니까?"),
+            actions: <Widget>[
+              FlatButton(
+                  onPressed: (){
+                    Navigator.pop(context, "삭제");
+                    setState(() {
+                      deleteMemo(deleteId);
+                    });
+                    deleteId = "";
+                  },
+                  child: Text("삭제")
+              ),
+              FlatButton(
+                  onPressed: (){
+                    deleteId = "";
+                    Navigator.pop(context, "취소");
+                  },
+                  child: Text("취소")
+              ),
+            ],
+          );
+        }
+    );
+  }
+
+  Widget memoBuilder(BuildContext parent_context) {
     return FutureBuilder(
       builder: (context, snap) {
         if (snap?.data?.isEmpty ?? true) {
@@ -73,10 +110,17 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (context, index) {
               Memo memo = snap.data[index];
               return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      parent_context,
+                      CupertinoPageRoute(
+                          builder: (context) => ViewPage(id: memo.id))
+                    );
+                  },
                   onLongPress: () {
                     setState(() {
-                      deleteMemo(memo.id);
+                      deleteId = memo.id;
+                      showAlertDialog(parent_context);
                     });
                   },
                   child: Container(
