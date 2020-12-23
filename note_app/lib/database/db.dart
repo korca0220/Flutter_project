@@ -84,7 +84,7 @@ class DBHelper {
     );
   }
 
-  Future<void> findMemo(String id) async {
+  Future<List<Memo>> findMemo(String id) async {
     final db = await database;
 
     final List<Map<String, dynamic>> maps =
