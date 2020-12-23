@@ -41,7 +41,7 @@ class _WritePageState extends State<WritePage> {
                   },
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
                   keyboardType: TextInputType.multiline,
-                  maxLines: 5,
+                  maxLines: 1,
                   decoration: InputDecoration(
                       hintText: '제목을 적어주세요'
                   )

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:note_app/screens/edit.dart';
 import 'package:note_app/screens/view.dart';
+import 'package:note_app/screens/write.dart';
 
 import 'package:note_app/database/memo.dart';
 import 'package:note_app/database/db.dart';
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
-              context, CupertinoPageRoute(builder: (context) => EditPage()));
+              context, CupertinoPageRoute(builder: (context) => WritePage()));
         },
         tooltip: '메모를 추가하려면 클릭하세요',
         label: Text('메모 추가'),
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void showAlertDialog(BuildContext context) async {
-    String result = await showDialog(
+    await showDialog(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
