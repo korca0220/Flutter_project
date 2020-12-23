@@ -4,13 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:note_app/database/db.dart';
 import 'package:note_app/database/memo.dart';
 
-class ViewPage extends StatelessWidget {
+class ViewPage extends StatefulWidget {
   ViewPage({Key key, this.id}) : super(key: key);
 
   final String id;
 
-  //TODO : findMemo 추가
+  @override
+  _ViewPageState createState() => _ViewPageState();
+}
 
+class _ViewPageState extends State<ViewPage> {
+  BuildContext _context;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
