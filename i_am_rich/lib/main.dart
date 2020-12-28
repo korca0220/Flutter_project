@@ -3,8 +3,18 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Center(
-        child: Text("Hello, World"),
+      home: Scaffold(
+        backgroundColor: Colors.blueGrey,
+        appBar: AppBar(
+          title: Text('Hello World'),
+          backgroundColor: Colors.blueGrey[900],
+        ),
+        body: Center(
+          child: Image(
+            image:
+                NetworkImage('https://www.w3schools.com/w3css/img_lights.jpg'),
+          ),
+        ),
       ),
     ),
   );
