@@ -103,7 +103,7 @@ class _EditPageState extends State<EditPage> {
       id: widget.id,
       title: this.title,
       text: this.text,
-      create_time: create_time,
+      create_time: this.create_time,
       edit_time: DateTime.now().toString(),
     );
 
