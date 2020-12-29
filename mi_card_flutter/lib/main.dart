@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.teal,
         body: SafeArea(
             child: Column(
-          children: <Widget>[],
+          children: <Widget>[CircleAvatar()],
         )),
       ),
     );
