@@ -18,8 +18,9 @@ class MyApp extends StatelessWidget {
               backgroundImage: AssetImage('images/profile_image.jpg'),
             ),
             Text(
-              'Unknown',
+              'Unknown J',
               style: TextStyle(
+                  fontFamily: 'Pacifico',
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
