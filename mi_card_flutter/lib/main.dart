@@ -36,54 +36,40 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.teal.shade100),
             ),
-            Container(
-              padding: EdgeInsets.all(10),
+            Card(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Icon(
+              child: ListTile(
+                  leading: Icon(
                     Icons.phone,
                     color: Colors.teal.shade800,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
+                  title: Text(
                     '010-5555-5555',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'SourceSansPro',
                         fontSize: 20,
                         color: Colors.teal.shade900),
-                  )
-                ],
-              ),
+                  )),
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-              color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Icon(
+            Card(
+                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+                color: Colors.white,
+                child: ListTile(
+                  leading: Icon(
                     Icons.mail,
                     color: Colors.teal.shade800,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
+                  title: Text(
                     'power@develop.com',
                     style: TextStyle(
                         fontFamily: 'SourceSansPro',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.teal.shade900),
-                  )
-                ],
-              ),
-            )
+                  ),
+                ))
           ],
         )),
       ),
