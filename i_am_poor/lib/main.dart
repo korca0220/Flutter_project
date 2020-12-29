@@ -9,8 +9,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'I AM POOR',
+      home: MyHomePage(title: 'I AM Poor'),
     );
   }
 }
@@ -28,9 +28,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[850],
         title: Text(widget.title),
       ),
-      body: Center(),
+      body: Center(
+        child: Image(
+          image: AssetImage('images/bussman.jpg'),
+        ),
+      ),
+      backgroundColor: Colors.teal[200],
     );
   }
 }
