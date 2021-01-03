@@ -1,4 +1,4 @@
-#Mon Jan 04 02:37:06 KST 2021
-base.0=E\:\\Storage\\Programming\\Flutter\\magic-8-ball-flutter\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Mon Jan 04 02:49:47 KST 2021
+base.0=E\:\\Storage\\Programming\\Flutter\\Flutter_project\\magic-8-ball-flutter\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
