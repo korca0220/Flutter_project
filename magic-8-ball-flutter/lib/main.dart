@@ -33,14 +33,16 @@ class _BallState extends State<Ball> {
       child: FlatButton(
         onPressed: () {
           changeClickedNumber();
-          print('$clickedImageNumber');
         },
-        child: Image.asset('images/ball1.png'),
+        child: Image.asset('images/ball$clickedImageNumber.png'),
       ),
     );
   }
 
   void changeClickedNumber() {
-    clickedImageNumber = Random().nextInt(5) + 1;
+    setState(() {
+      clickedImageNumber = Random().nextInt(5) + 1;
+      print('$clickedImageNumber');
+    });
   }
 }
