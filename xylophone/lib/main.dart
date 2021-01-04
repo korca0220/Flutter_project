@@ -9,6 +9,17 @@ class XylophoneApp extends StatelessWidget {
     player.play('$audio');
   }
 
+  Expanded buildKey({Color color, String audio}) {
+    return Expanded(
+      child: FlatButton(
+        onPressed: () {
+          playSound(audio);
+        },
+        color: color,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,56 +29,13 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Expanded(
-                child: FlatButton(
-                  onPressed: () {
-                    playSound('note1.wav');
-                  },
-                  color: Colors.red,
-                ),
-              ),
-              Expanded(
-                child: FlatButton(
-                    onPressed: () {
-                      playSound('note2.wav');
-                    },
-                    color: Colors.orange),
-              ),
-              Expanded(
-                child: FlatButton(
-                    onPressed: () {
-                      playSound('note3.wav');
-                    },
-                    color: Colors.yellow),
-              ),
-              Expanded(
-                child: FlatButton(
-                    onPressed: () {
-                      playSound('note4.wav');
-                    },
-                    color: Colors.green),
-              ),
-              Expanded(
-                child: FlatButton(
-                    onPressed: () {
-                      playSound('note5.wav');
-                    },
-                    color: Colors.teal),
-              ),
-              Expanded(
-                child: FlatButton(
-                    onPressed: () {
-                      playSound('note6.wav');
-                    },
-                    color: Colors.blue),
-              ),
-              Expanded(
-                child: FlatButton(
-                    onPressed: () {
-                      playSound('note7.wav');
-                    },
-                    color: Colors.purple),
-              ),
+              buildKey(color: Colors.red, audio: 'note1.wav'),
+              buildKey(color: Colors.orange, audio: 'note2.wav'),
+              buildKey(color: Colors.yellow, audio: 'note3.wav'),
+              buildKey(color: Colors.green, audio: 'note4.wav'),
+              buildKey(color: Colors.teal, audio: 'note5.wav'),
+              buildKey(color: Colors.blue, audio: 'note6.wav'),
+              buildKey(color: Colors.purple, audio: 'note7.wav'),
             ],
           ),
         ),
