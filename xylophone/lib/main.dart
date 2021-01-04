@@ -13,45 +13,61 @@ class XylophoneApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  playSound('note1.wav');
-                },
-                color: Colors.red,
+              Expanded(
+                child: FlatButton(
+                  onPressed: () {
+                    playSound('note1.wav');
+                  },
+                  color: Colors.red,
+                ),
               ),
-              FlatButton(
-                  onPressed: () {
-                    playSound('note2.wav');
-                  },
-                  color: Colors.orange),
-              FlatButton(
-                  onPressed: () {
-                    playSound('note3.wav');
-                  },
-                  color: Colors.yellow),
-              FlatButton(
-                  onPressed: () {
-                    playSound('note4.wav');
-                  },
-                  color: Colors.green),
-              FlatButton(
-                  onPressed: () {
-                    playSound('note5.wav');
-                  },
-                  color: Colors.teal),
-              FlatButton(
-                  onPressed: () {
-                    playSound('note6.wav');
-                  },
-                  color: Colors.blue),
-              FlatButton(
-                  onPressed: () {
-                    playSound('note7.wav');
-                  },
-                  color: Colors.purple),
+              Expanded(
+                child: FlatButton(
+                    onPressed: () {
+                      playSound('note2.wav');
+                    },
+                    color: Colors.orange),
+              ),
+              Expanded(
+                child: FlatButton(
+                    onPressed: () {
+                      playSound('note3.wav');
+                    },
+                    color: Colors.yellow),
+              ),
+              Expanded(
+                child: FlatButton(
+                    onPressed: () {
+                      playSound('note4.wav');
+                    },
+                    color: Colors.green),
+              ),
+              Expanded(
+                child: FlatButton(
+                    onPressed: () {
+                      playSound('note5.wav');
+                    },
+                    color: Colors.teal),
+              ),
+              Expanded(
+                child: FlatButton(
+                    onPressed: () {
+                      playSound('note6.wav');
+                    },
+                    color: Colors.blue),
+              ),
+              Expanded(
+                child: FlatButton(
+                    onPressed: () {
+                      playSound('note7.wav');
+                    },
+                    color: Colors.purple),
+              ),
             ],
           ),
         ),
