@@ -3,9 +3,9 @@ class Story {
   String choice1 = "";
   String choice2 = "";
 
-  Story({String title, String ch1, String ch2}) {
-    storyTitle = title;
-    choice1 = ch1;
-    choice2 = ch2;
+  Story({String storyTitle, String choice1, String choice2}) {
+    this.storyTitle = storyTitle;
+    this.choice1 = choice1;
+    this.choice2 = choice2;
   }
 }
