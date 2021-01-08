@@ -32,38 +32,34 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReuseableCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.Male;
                       });
                     },
-                    child: ReuseableCard(
-                      colour: selectedGender == Gender.Male
-                          ? ActiveCardColor
-                          : inactivateCardColor,
-                      cardChild: ReuseableColumn(
-                        icon: FontAwesomeIcons.mars,
-                        label: 'MALE',
-                      ),
+                    colour: selectedGender == Gender.Male
+                        ? ActiveCardColor
+                        : inactivateCardColor,
+                    cardChild: ReuseableColumn(
+                      icon: FontAwesomeIcons.mars,
+                      label: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReuseableCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.Female;
                       });
                     },
-                    child: ReuseableCard(
-                      colour: selectedGender == Gender.Female
-                          ? ActiveCardColor
-                          : inactivateCardColor,
-                      cardChild: ReuseableColumn(
-                        icon: FontAwesomeIcons.venus,
-                        label: 'FEMALE',
-                      ),
+                    colour: selectedGender == Gender.Female
+                        ? ActiveCardColor
+                        : inactivateCardColor,
+                    cardChild: ReuseableColumn(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
                     ),
                   ),
                 ),
