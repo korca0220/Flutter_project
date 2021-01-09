@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'icon_content.dart';
 import 'reuseable_card.dart';
 import 'const.dart';
+import 'results_page.dart';
 
 enum Gender { Male, Female }
 
@@ -16,6 +18,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 180;
   int weight = 60;
+  int age = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -148,16 +151,59 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReuseableCard(
                     colour: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPress: () {
+                                  setState(() {
+                                    age -= 1;
+                                  });
+                                }),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPress: () {
+                                  setState(() {
+                                    age += 1;
+                                  });
+                                }),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) {
+                return ResultsPage();
+              }));
+            },
+            child: Container(
+              child: Text('CALCULRATE'),
+              color: kBottomContainerColor,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: kBottomContainerHeight,
+            ),
           )
         ],
       ),
