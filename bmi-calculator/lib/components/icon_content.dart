@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'const.dart';
+import 'package:bmi_calculator/const.dart';
 
 class ReuseableColumn extends StatelessWidget {
   ReuseableColumn({@required this.icon, @required this.label});
