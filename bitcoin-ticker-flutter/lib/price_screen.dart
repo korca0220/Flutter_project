@@ -1,8 +1,7 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:bitcoin_ticker/coin_data.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'coin_data.dart';
 import 'coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
@@ -13,22 +12,38 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrentcy = 'USD';
 
-  List<DropdownMenuItem> getDropdownItems() {
+  DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String currency in currenciesList) {
       dropdownItems.add(
         DropdownMenuItem(child: Text(currency), value: currency),
       );
     }
-    return dropdownItems;
+
+    return DropdownButton<String>(
+      value: selectedCurrentcy,
+      items: dropdownItems,
+      onChanged: (value) {
+        setState(() {
+          selectedCurrentcy = value;
+        });
+      },
+    );
   }
 
-  List<Text> getPickerItems() {
+  CupertinoPicker IOSPicker() {
     List<Text> pickerItems = [];
     for (String currency in currenciesList) {
       pickerItems.add(Text(currency));
     }
-    return pickerItems;
+    return CupertinoPicker(
+      backgroundColor: Colors.lightBlue,
+      itemExtent: 32.0,
+      onSelectedItemChanged: (selectedIndex) {
+        print(selectedIndex);
+      },
+      children: pickerItems,
+    );
   }
 
   @override
@@ -63,30 +78,13 @@ class _PriceScreenState extends State<PriceScreen> {
             ),
           ),
           Container(
-            height: 150.0,
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child: CupertinoPicker(
-              backgroundColor: Colors.lightBlue,
-              itemExtent: 32.0,
-              onSelectedItemChanged: (selectedIndex) {
-                print(selectedIndex);
-              },
-              children: getPickerItems(),
-            ),
-          ),
+              height: 150.0,
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(bottom: 30.0),
+              color: Colors.lightBlue,
+              child: Platform.isIOS ? IOSPicker() : androidDropdown()),
         ],
       ),
     );
   }
 }
-// DropdownButton<String>(
-// value: selectedCurrentcy,
-// items: getDropdownItems(),
-// onChanged: (value) {
-// setState(() {
-// selectedCurrentcy = value;
-// });
-// },
-// )
