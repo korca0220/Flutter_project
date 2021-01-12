@@ -49,10 +49,15 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   //TODO: Create a method here called getData() to get the coin data from coin_data.dart
+  void getData(String base, String quote) {
+    var coinData = CoinData(base: base, quote: quote);
+    coinData.getCoinData();
+  }
 
   @override
   void initState() {
     super.initState();
+    getData('BTC', 'USD');
     //TODO: Call getData() when the screen loads up.
   }
 
