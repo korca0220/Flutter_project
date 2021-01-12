@@ -5,8 +5,13 @@ import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 
 import 'screens/chat_screen.dart';
+import 'screens/chat_screen.dart';
+import 'screens/login_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/registration_screen.dart';
+import 'screens/registration_screen.dart';
+import 'screens/welcome_screen.dart';
+import 'screens/welcome_screen.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/welcome_screen.dart';
 
@@ -18,15 +23,15 @@ class FlashChat extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.black54),
+          bodyText2: TextStyle(color: Colors.black54),
         ),
       ),
-      initialRoute: '.',
+      initialRoute: WelcomeScreen.id,
       routes: {
-        '/': (context) => WelcomeScreen(),
-        '/first': (context) => LoginScreen(),
-        '/second': (context) => RegistrationScreen(),
-        '/thrid': (context) => ChatScreen(),
+        WelcomeScreen.id: (context) => WelcomeScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
       },
     );
   }
