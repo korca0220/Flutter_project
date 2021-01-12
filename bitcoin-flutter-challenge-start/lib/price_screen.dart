@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'coin_data.dart';
 import 'dart:io' show Platform;
+import 'package:logger/logger.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+  var logger = Logger();
   String selectedCurrency = 'USD';
 
   DropdownButton<String> androidDropdown() {
@@ -52,7 +54,6 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-  //TODO: Create a method here called getData() to get the coin data from coin_data.dart
   Map<String, String> coinValue = {};
   bool callWait = false;
   void getData() async {
@@ -64,7 +65,7 @@ class _PriceScreenState extends State<PriceScreen> {
         coinValue = coinData;
       });
     } catch (e) {
-      print(e);
+      logger.e(e);
     }
   }
 
