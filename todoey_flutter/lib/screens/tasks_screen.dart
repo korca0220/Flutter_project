@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todoey_flutter/widgets/tasks_list.dart';
+import 'package:todoey_flutter/screens/add_task_screen.dart';
 
 class TaskScreen extends StatelessWidget {
-  List<String> _todoList = ['test', 'test2'];
+  Widget buildButtonSheet(BuildContext context) {
+    return AddTaskScreen();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,7 @@ class TaskScreen extends StatelessWidget {
           size: 40,
         ),
         onPressed: () {
-          //TODO : add pressed event
+          showModalBottomSheet(context: context, builder: buildButtonSheet);
         },
       ),
     );
