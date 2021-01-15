@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_flutter/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  final textFieldController = TextEditingController();
+
   Color getBoxColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
@@ -39,6 +43,7 @@ class AddTaskScreen extends StatelessWidget {
               ),
             ),
             TextField(
+              controller: textFieldController,
               decoration: InputDecoration(
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -52,7 +57,11 @@ class AddTaskScreen extends StatelessWidget {
               height: 20,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<TaskData>(context, listen: false)
+                    .addTaskList(textFieldController.text);
+                Navigator.pop(context);
+              },
               style: ButtonStyle(
                 backgroundColor: MaterialStateColor.resolveWith(getBoxColor),
               ),
