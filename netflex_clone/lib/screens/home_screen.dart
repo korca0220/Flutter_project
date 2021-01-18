@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:netflex_clone/widgets/carousel_slider.dart';
 import 'package:netflex_clone/widgets/circle_slider.dart';
+import 'package:netflex_clone/widgets/box_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -48,7 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
           TopBar(),
         ],
       ),
-      CircleSlider(movies: movies)
+      CircleSlider(movies: movies),
+      BoxSlider(
+        movies: movies,
+      )
     ]);
   }
 }
