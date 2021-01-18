@@ -9,7 +9,8 @@ class BottomBar extends StatelessWidget {
         color: Colors.black,
         child: TabBar(
           labelColor: Colors.white,
-          unselectedLabelColor: Colors.grey,
+          unselectedLabelColor: Colors.transparent,
+          indicatorColor: Colors.red,
           tabs: [
             Tab(
               icon: Icon(Icons.home),

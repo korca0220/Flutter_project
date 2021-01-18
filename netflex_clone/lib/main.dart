@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflex_clone/screens/home_screen.dart';
 import 'package:netflex_clone/widgets/bottom_bar.dart';
 
 void main() {
@@ -11,6 +12,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  TabController controller;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,9 +29,7 @@ class _MyAppState extends State<MyApp> {
             body: TabBarView(
               physics: NeverScrollableScrollPhysics(),
               children: [
-                Container(
-                  child: Center(child: Text('Home')),
-                ),
+                HomeScreen(),
                 Container(
                   child: Center(child: Text('Search')),
                 ),
