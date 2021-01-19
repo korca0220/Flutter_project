@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:netflex_clone/screens/detail_screen.dart';
 
 class CarouselImage extends StatefulWidget {

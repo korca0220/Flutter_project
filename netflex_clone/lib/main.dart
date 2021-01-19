@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/screens/home_screen.dart';
+import 'package:netflex_clone/screens/profile_screen.dart';
 import 'package:netflex_clone/widgets/bottom_bar.dart';
 
 void main() {
@@ -40,9 +41,7 @@ class _MyAppState extends State<MyApp> {
                 Container(
                   child: Center(child: Text('Save')),
                 ),
-                Container(
-                  child: Center(child: Text('Profile')),
-                )
+                ProfileScreen()
               ],
             ),
             bottomNavigationBar: BottomBar(),

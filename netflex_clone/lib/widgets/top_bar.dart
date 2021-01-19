@@ -4,7 +4,7 @@ class TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -12,7 +12,7 @@ class TopBar extends StatelessWidget {
           Image.asset(
             'images/bbongflix_logo.png',
             fit: BoxFit.contain,
-            height: 25,
+            height: 30,
           ),
           Container(
             padding: EdgeInsets.only(right: 1),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
+import 'package:netflex_clone/screens/detail_screen.dart';
 
 class CircleSlider extends StatelessWidget {
   final List<Movie> movies;
@@ -15,7 +16,7 @@ class CircleSlider extends StatelessWidget {
           height: 120,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: makeCircleImages(movies),
+            children: makeCircleImages(context, movies),
           ),
         )
       ]),
@@ -23,18 +24,22 @@ class CircleSlider extends StatelessWidget {
   }
 }
 
-List<Widget> makeCircleImages(List<Movie> moveis) {
+List<Widget> makeCircleImages(BuildContext context, List<Movie> movies) {
   List<Widget> results = [];
-  for (int i = 0; i < moveis.length; i++) {
+  for (int i = 0; i < movies.length; i++) {
     results.add(InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return DetailScreen(movie: movies[i]);
+        }));
+      },
       child: Container(
         padding: EdgeInsets.only(right: 10),
         child: Align(
           alignment: Alignment.centerLeft,
           child: CircleAvatar(
             radius: 50.0,
-            backgroundImage: AssetImage('images/' + moveis[i].poster),
+            backgroundImage: AssetImage('images/' + movies[i].poster),
           ),
         ),
       ),
