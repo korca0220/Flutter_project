@@ -34,9 +34,9 @@ class BottomBar extends StatelessWidget {
               ),
             ),
             Tab(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.person),
               child: Text(
-                'List',
+                'Profile',
                 style: TextStyle(fontSize: 8),
               ),
             ),

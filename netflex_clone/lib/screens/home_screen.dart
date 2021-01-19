@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:netflex_clone/widgets/top_bar.dart';
 import 'package:netflex_clone/models/model_movie.dart';
-import 'package:netflex_clone/widgets/carousel_slider.dart';
+import 'package:netflex_clone/widgets/main_image.dart';
 import 'package:netflex_clone/widgets/circle_slider.dart';
 import 'package:netflex_clone/widgets/box_slider.dart';
 
@@ -56,46 +58,5 @@ class _HomeScreenState extends State<HomeScreen> {
         movies: movies,
       )
     ]);
-  }
-}
-
-class TopBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(
-            'images/bbongflix_logo.png',
-            fit: BoxFit.contain,
-            height: 25,
-          ),
-          Container(
-            padding: EdgeInsets.only(right: 1),
-            child: Text(
-              'TV 프로그램',
-              style: TextStyle(fontSize: 14),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(right: 1),
-            child: Text(
-              'TV 프로그램',
-              style: TextStyle(fontSize: 14),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(right: 1),
-            child: Text(
-              'TV 프로그램',
-              style: TextStyle(fontSize: 14),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

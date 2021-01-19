@@ -30,12 +30,18 @@ List<Widget> makeBoxImages(List<Movie> movies) {
   List<Widget> results = [];
   for (int i = 0; i < movies.length; i++) {
     results.add(Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+      ),
       padding: EdgeInsets.only(right: 10),
       child: InkWell(
         onTap: () {},
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Image.asset('images/' + movies[i].poster),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Image.asset('images/' + movies[i].poster),
+          ),
         ),
       ),
     ));
