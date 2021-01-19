@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:netflex_clone/screens/detail_screen.dart';
-import 'package:firebase_image/firebase_image.dart';
 
 class CircleSlider extends StatelessWidget {
   final List<Movie> movies;
@@ -40,7 +39,7 @@ List<Widget> makeCircleImages(BuildContext context, List<Movie> movies) {
           alignment: Alignment.centerLeft,
           child: CircleAvatar(
             radius: 50.0,
-            backgroundImage: FirebaseImage(movies[i].poster),
+            backgroundImage: NetworkImage(movies[i].poster),
           ),
         ),
       ),

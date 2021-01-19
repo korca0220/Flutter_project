@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:netflex_clone/screens/detail_screen.dart';
-import 'package:firebase_image/firebase_image.dart';
 
 class BoxSlider extends StatelessWidget {
   final List<Movie> movies;
@@ -48,9 +47,8 @@ List<Widget> makeBoxImages(BuildContext context, List<Movie> movies) {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Align(
-            alignment: Alignment.centerLeft,
-            child: Image(image: FirebaseImage(movies[i].poster)),
-          ),
+              alignment: Alignment.centerLeft,
+              child: Image.network(movies[i].poster)),
         ),
       ),
     ));

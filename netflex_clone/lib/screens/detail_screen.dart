@@ -43,8 +43,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.fromLTRB(0, 45, 0, 7),
-                                  child: Image.asset(
-                                      'images/' + widget.movie.poster),
+                                  child: Image.network(widget.movie.poster),
                                   height: 300,
                                 ),
                                 Container(

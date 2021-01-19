@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "574653969759",
+    "firebase_url": "https://bamboo-climate-259309.firebaseio.com",
+    "project_id": "bamboo-climate-259309",
+    "storage_bucket": "bamboo-climate-259309.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574653969759:android:bffe360b5b5584535472ea",
+        "android_client_info": {
+          "package_name": "com.junewoo.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574653969759-j8ag566rvihe2d9cq2at8umjqrq6jmpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA87aksngN-j0zUy3glUbF-Lc-GUWAE72g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574653969759-j8ag566rvihe2d9cq2at8umjqrq6jmpv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "574653969759-h8dsslap2ob4is3eb97bpqulde63udni.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.junewoo.flashChat"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574653969759:android:c47f7e7dd8704fb45472ea",
+        "android_client_info": {
+          "package_name": "com.junewoo.netflex_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574653969759-j8ag566rvihe2d9cq2at8umjqrq6jmpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA87aksngN-j0zUy3glUbF-Lc-GUWAE72g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574653969759-j8ag566rvihe2d9cq2at8umjqrq6jmpv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "574653969759-h8dsslap2ob4is3eb97bpqulde63udni.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.junewoo.flashChat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

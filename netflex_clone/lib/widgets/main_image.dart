@@ -1,4 +1,3 @@
-import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:netflex_clone/screens/detail_screen.dart';
@@ -35,7 +34,7 @@ class _CarouselImageState extends State<CarouselImage> {
   void initState() {
     super.initState();
     movies = widget.movies;
-    images = movies.map((e) => Image(image: FirebaseImage(e.poster))).toList();
+    images = movies.map((e) => Image.network(e.poster)).toList();
     keywords = movies.map((e) => e.keyword).toList();
     likes = movies.map((e) => e.like).toList();
     _currentKeyword = keywords[0];
