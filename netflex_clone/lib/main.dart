@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/screens/home_screen.dart';
 import 'package:netflex_clone/screens/profile_screen.dart';
+import 'package:netflex_clone/screens/search_screen.dart';
 import 'package:netflex_clone/widgets/bottom_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:netflex_clone/screens/search_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,9 +40,7 @@ class _MyAppState extends State<MyApp> {
               physics: NeverScrollableScrollPhysics(),
               children: [
                 HomeScreen(),
-                Container(
-                  child: Center(child: Text('Search')),
-                ),
+                SearchScreen(),
                 Container(
                   child: Center(child: Text('Save')),
                 ),
