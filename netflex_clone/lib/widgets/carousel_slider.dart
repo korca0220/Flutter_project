@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:netflex_clone/screens/detail_screen.dart';
 
 class CarouselImage extends StatefulWidget {
   final List<Movie> movies;
@@ -43,92 +44,80 @@ class _CarouselImageState extends State<CarouselImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
-          SizedBox(
-            height: 40,
-          ),
-          CarouselSlider(
-            items: images,
-            options: CarouselOptions(
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentPage = index;
-                  _currentKeyword = keywords[_currentPage];
-                });
-              },
-            ),
+          Container(
+            height: 600,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/test_movie_1.png'),
+                    fit: BoxFit.fill)),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 3),
-            child: Text(
-              _currentKeyword,
-              style: TextStyle(fontSize: 11),
-            ),
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  child: Column(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                child: Column(
+                  children: [
+                    likes[_currentPage]
+                        ? IconButton(icon: Icon(Icons.check), onPressed: () {})
+                        : IconButton(icon: Icon(Icons.add), onPressed: () {}),
+                    Text(
+                      '내가 찜한 콘텐츠',
+                      style: TextStyle(fontSize: 11),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(right: 10),
+                child: TextButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateColor.resolveWith(getBoxColor)),
+                  onPressed: () {},
+                  child: Row(
                     children: [
-                      likes[_currentPage]
-                          ? IconButton(
-                              icon: Icon(Icons.check), onPressed: () {})
-                          : IconButton(icon: Icon(Icons.add), onPressed: () {}),
+                      Icon(
+                        Icons.play_arrow,
+                        color: Colors.black,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 10),
+                      ),
                       Text(
-                        '내가 찜한 콘텐츠',
-                        style: TextStyle(fontSize: 11),
+                        '재생',
+                        style: TextStyle(color: Colors.black),
                       )
                     ],
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.only(right: 10),
-                  child: TextButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateColor.resolveWith(getBoxColor)),
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.play_arrow,
-                          color: Colors.black,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10),
-                        ),
-                        Text(
-                          '재생',
-                          style: TextStyle(color: Colors.black),
-                        )
-                      ],
-                    ),
-                  ),
+              ),
+              Container(
+                padding: EdgeInsets.only(right: 10),
+                child: Column(
+                  children: [
+                    IconButton(
+                        icon: Icon(Icons.info),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return DetailScreen(
+                              movie: movies[_currentPage],
+                            );
+                          }));
+                        }),
+                    Text(
+                      '정보',
+                      style: TextStyle(color: Colors.white, fontSize: 11),
+                    )
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.only(right: 10),
-                  child: Column(
-                    children: [
-                      IconButton(icon: Icon(Icons.info), onPressed: () {}),
-                      Text(
-                        '정보',
-                        style: TextStyle(color: Colors.white, fontSize: 11),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: makeIndicator(likes, _currentPage),
-            ),
-          )
+              )
+            ],
+          )),
         ],
       ),
     );

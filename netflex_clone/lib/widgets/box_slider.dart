@@ -14,7 +14,7 @@ class BoxSlider extends StatelessWidget {
         children: [
           Text('지금 뜨는 컨텐츠'),
           Container(
-            height: 120,
+            height: 140,
             child: ListView(
               children: makeBoxImages(movies),
               scrollDirection: Axis.horizontal,

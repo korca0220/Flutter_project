@@ -33,7 +33,7 @@ List<Widget> makeCircleImages(List<Movie> moveis) {
         child: Align(
           alignment: Alignment.centerLeft,
           child: CircleAvatar(
-            radius: 40.0,
+            radius: 50.0,
             backgroundImage: AssetImage('images/' + moveis[i].poster),
           ),
         ),

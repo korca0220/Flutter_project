@@ -21,13 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
     Movie.fromMap({
       'title': '사랑의 불시착',
       'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
+      'poster': 'black-panther.jpg',
       'like': false
     }),
     Movie.fromMap({
       'title': '사랑의 불시착',
       'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
+      'poster': 'bbongflix_logo.png',
       'like': false
     }),
     Movie.fromMap({
@@ -43,8 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return ListView(children: [
       Stack(
         children: [
-          CarouselImage(
-            movies: movies,
+          Center(
+            child: CarouselImage(
+              movies: movies,
+            ),
           ),
           TopBar(),
         ],
@@ -92,9 +94,6 @@ class TopBar extends StatelessWidget {
               style: TextStyle(fontSize: 14),
             ),
           ),
-          Column(
-            children: [],
-          )
         ],
       ),
     );

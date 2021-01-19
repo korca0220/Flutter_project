@@ -14,10 +14,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   TabController controller;
 
+  final ButtonStyle flatButtonStyle =
+      ElevatedButton.styleFrom(primary: Colors.red);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
+        elevatedButtonTheme: ElevatedButtonThemeData(style: flatButtonStyle),
         brightness: Brightness.dark,
         primaryColor: Colors.black,
         accentColor: Colors.white,
