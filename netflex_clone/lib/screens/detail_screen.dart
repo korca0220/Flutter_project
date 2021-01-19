@@ -29,7 +29,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('images/' + widget.movie.poster),
+                          image: NetworkImage(widget.movie.poster),
                           fit: BoxFit.cover),
                     ),
                     child: ClipRect(

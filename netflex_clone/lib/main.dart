@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:netflex_clone/screens/home_screen.dart';
 import 'package:netflex_clone/screens/profile_screen.dart';
 import 'package:netflex_clone/widgets/bottom_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
