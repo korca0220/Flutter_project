@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:netflex_clone/models/model_movie.dart';
-import 'package:netflex_clone/screens/detail_screen.dart';
+import 'package:netflex_clone/components/list_item.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -26,12 +25,12 @@ class _SearchScreenState extends State<SearchScreen> {
       stream: FirebaseFirestore.instance.collection('movies').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
-        return _buildList(context, snapshot.data.docs);
+        return _buildListSec(context, snapshot.data.docs);
       },
     );
   }
 
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+  Widget _buildListSec(BuildContext context, List<DocumentSnapshot> snapshot) {
     List<DocumentSnapshot> searchResults = [];
     for (DocumentSnapshot d in snapshot) {
       if (d.data().toString().contains(_searchText)) {
@@ -39,29 +38,20 @@ class _SearchScreenState extends State<SearchScreen> {
       }
     }
     return Expanded(
-      child: GridView.count(
-          crossAxisCount: 3,
-          childAspectRatio: 1 / 1.5,
-          padding: EdgeInsets.all(3),
-          children:
-              searchResults.map((e) => _buildListItem(context, e)).toList()),
-    );
-  }
-
-  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final movie = Movie.fromSnapshot(data);
-    return InkWell(
-      child: Image.network(movie.poster),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return DetailScreen(movie: movie);
-            },
-          ),
-        );
-      },
+      child: ListView.separated(
+        itemCount: searchResults.length,
+        padding: EdgeInsets.all(3),
+        itemBuilder: (context, index) {
+          return RowListItem(
+            docs: searchResults[index],
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const Divider(
+            height: 2.0,
+          );
+        },
+      ),
     );
   }
 
@@ -135,7 +125,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     : Expanded(
                         flex: 0,
                         child: Container(),
-                      )
+                      ),
               ],
             ),
           ),

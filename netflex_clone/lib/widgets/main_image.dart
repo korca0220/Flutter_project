@@ -16,7 +16,6 @@ class _CarouselImageState extends State<CarouselImage> {
   List<String> keywords;
   List<bool> likes;
   int _currentPage = 0;
-  String _currentKeyword;
 
   Color getBoxColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -37,7 +36,6 @@ class _CarouselImageState extends State<CarouselImage> {
     images = movies.map((e) => Image.network(e.poster)).toList();
     keywords = movies.map((e) => e.keyword).toList();
     likes = movies.map((e) => e.like).toList();
-    _currentKeyword = keywords[0];
   }
 
   @override
@@ -126,16 +124,18 @@ class _CarouselImageState extends State<CarouselImage> {
 List<Widget> makeIndicator(List list, int _currentPage) {
   List<Widget> results = [];
   for (int i = 0; i < list.length; i++) {
-    results.add(Container(
-      width: 8,
-      height: 8,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: _currentPage == i
-              ? Color.fromRGBO(255, 255, 255, 0.9)
-              : Color.fromRGBO(255, 255, 255, 0.4)),
-    ));
+    results.add(
+      Container(
+        width: 8,
+        height: 8,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _currentPage == i
+                ? Color.fromRGBO(255, 255, 255, 0.9)
+                : Color.fromRGBO(255, 255, 255, 0.4)),
+      ),
+    );
   }
   return results;
 }

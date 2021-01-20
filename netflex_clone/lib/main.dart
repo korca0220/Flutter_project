@@ -4,7 +4,6 @@ import 'package:netflex_clone/screens/profile_screen.dart';
 import 'package:netflex_clone/screens/search_screen.dart';
 import 'package:netflex_clone/widgets/bottom_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:netflex_clone/screens/search_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
