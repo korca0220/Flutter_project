@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:netflex_clone/screens/detail_screen.dart';
@@ -11,11 +12,13 @@ class CarouselImage extends StatefulWidget {
 }
 
 class _CarouselImageState extends State<CarouselImage> {
+  final random = Random();
   List<Movie> movies;
   List<Widget> images;
   List<String> keywords;
   List<bool> likes;
   int _currentPage = 0;
+  String _mainPost = "";
 
   Color getBoxColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -36,6 +39,14 @@ class _CarouselImageState extends State<CarouselImage> {
     images = movies.map((e) => Image.network(e.poster)).toList();
     keywords = movies.map((e) => e.keyword).toList();
     likes = movies.map((e) => e.like).toList();
+    _mainPost = movies[random.nextInt(movies.length)].poster;
+  }
+
+  void likeChanger() {
+    setState(() {
+      likes[_currentPage] = !likes[_currentPage];
+      movies[_currentPage].reference.update({'like': likes[_currentPage]});
+    });
   }
 
   @override
@@ -47,9 +58,9 @@ class _CarouselImageState extends State<CarouselImage> {
           Container(
             height: 600,
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/test_movie_1.png'),
-                    fit: BoxFit.fill)),
+              image: DecorationImage(
+                  image: NetworkImage(_mainPost), fit: BoxFit.fill),
+            ),
           ),
           Container(
               child: Row(
@@ -59,8 +70,10 @@ class _CarouselImageState extends State<CarouselImage> {
                 child: Column(
                   children: [
                     likes[_currentPage]
-                        ? IconButton(icon: Icon(Icons.check), onPressed: () {})
-                        : IconButton(icon: Icon(Icons.add), onPressed: () {}),
+                        ? IconButton(
+                            icon: Icon(Icons.check), onPressed: likeChanger)
+                        : IconButton(
+                            icon: Icon(Icons.add), onPressed: likeChanger),
                     Text(
                       '내가 찜한 콘텐츠',
                       style: TextStyle(fontSize: 11),
