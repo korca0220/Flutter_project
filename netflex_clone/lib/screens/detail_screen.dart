@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:netflex_clone/widgets/detail_bottom.dart';
+import 'package:netflex_clone/widgets/image_popup.dart';
 
 class DetailScreen extends StatefulWidget {
   final Movie movie;
@@ -44,19 +45,19 @@ class _DetailScreenState extends State<DetailScreen> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.fromLTRB(0, 45, 0, 7),
-                                  child: Image.network(widget.movie.poster),
-                                  height: 300,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(7),
-                                  child: Text(
-                                    '99% 일치 2019 15+ 시즌 1개',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (_) => ImagePopup(
+                                          image:
+                                              NetworkImage(widget.movie.poster),
+                                        ),
+                                      );
+                                    },
+                                    child: Image.network(widget.movie.poster),
                                   ),
+                                  height: 300,
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(7),
