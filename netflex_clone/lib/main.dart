@@ -41,9 +41,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 HomeScreen(),
                 SearchScreen(),
-                Container(
-                  child: Center(child: Text('Save')),
-                ),
+                LikeScreen(),
                 ProfileScreen()
               ],
             ),

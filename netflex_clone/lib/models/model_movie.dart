@@ -4,6 +4,9 @@ class Movie {
   final String title;
   final String keyword;
   final String poster;
+  final String actor;
+  final String producer;
+  final String intro;
   final bool like;
   final DocumentReference reference;
 
@@ -11,7 +14,10 @@ class Movie {
       : title = map['title'],
         keyword = map['keyword'],
         poster = map['poster'],
-        like = map['like'];
+        like = map['like'],
+        actor = map['actor'],
+        producer = map['producer'],
+        intro = map['intro'];
 
   Movie.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data(), reference: snapshot.reference);

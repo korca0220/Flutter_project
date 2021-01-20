@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
 import 'package:netflex_clone/screens/detail_screen.dart';
@@ -12,11 +11,13 @@ class CarouselImage extends StatefulWidget {
 }
 
 class _CarouselImageState extends State<CarouselImage> {
-  final random = Random();
   List<Movie> movies;
   List<Widget> images;
   List<String> keywords;
   List<bool> likes;
+  List<String> actors;
+  List<String> producers;
+  List<String> intros;
   int _currentPage = 0;
   String _mainPost = "";
 
@@ -39,7 +40,10 @@ class _CarouselImageState extends State<CarouselImage> {
     images = movies.map((e) => Image.network(e.poster)).toList();
     keywords = movies.map((e) => e.keyword).toList();
     likes = movies.map((e) => e.like).toList();
-    _mainPost = movies[random.nextInt(movies.length)].poster;
+    actors = movies.map((e) => e.actor).toList();
+    producers = movies.map((e) => e.producer).toList();
+    intros = movies.map((e) => e.intro).toList();
+    _mainPost = movies[0].poster;
   }
 
   void likeChanger() {

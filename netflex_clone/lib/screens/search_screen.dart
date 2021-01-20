@@ -25,12 +25,12 @@ class _SearchScreenState extends State<SearchScreen> {
       stream: FirebaseFirestore.instance.collection('movies').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
-        return _buildListSec(context, snapshot.data.docs);
+        return _buildList(context, snapshot.data.docs);
       },
     );
   }
 
-  Widget _buildListSec(BuildContext context, List<DocumentSnapshot> snapshot) {
+  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     List<DocumentSnapshot> searchResults = [];
     for (DocumentSnapshot d in snapshot) {
       if (d.data().toString().contains(_searchText)) {

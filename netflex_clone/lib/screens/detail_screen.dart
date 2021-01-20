@@ -1,6 +1,7 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:netflex_clone/models/model_movie.dart';
-import 'dart:ui';
+import 'package:netflex_clone/widgets/detail_bottom.dart';
 
 class DetailScreen extends StatefulWidget {
   final Movie movie;
@@ -89,7 +90,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 Container(
                                   padding: EdgeInsets.all(7),
                                   child: Text(
-                                    widget.movie.toString(),
+                                    widget.movie.intro,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12,
@@ -99,9 +100,20 @@ class _DetailScreenState extends State<DetailScreen> {
                                 Container(
                                   alignment: Alignment.centerLeft,
                                   padding: EdgeInsets.all(7),
-                                  child: Text(
-                                    '출연: 현빈, 손예진, 서지혜\n제작자: 이정호, 박지은',
-                                    textAlign: TextAlign.start,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '출연 : ${widget.movie.actor}',
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.start,
+                                      ),
+                                      Text(
+                                        '제작자 : ${widget.movie.producer}',
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ],
                                   ),
                                 )
                               ],
@@ -118,10 +130,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ))
                 ],
               ),
-              Container(
-                color: Colors.black,
-                child: Row(),
-              )
+              DetailBottom(movie: widget.movie)
             ],
           ),
         ),
