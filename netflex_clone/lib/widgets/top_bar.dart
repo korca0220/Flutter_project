@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflex_clone/components/top_bar_container.dart';
+import 'package:netflex_clone/widgets/top_bar_container.dart';
 
 class TopBar extends StatelessWidget {
   @override

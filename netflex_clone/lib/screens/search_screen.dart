@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:netflex_clone/components/list_item.dart';
+import 'package:netflex_clone/widgets/vertical_list_view.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -37,22 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
         searchResults.add(d);
       }
     }
-    return Expanded(
-      child: ListView.separated(
-        itemCount: searchResults.length,
-        padding: EdgeInsets.all(3),
-        itemBuilder: (context, index) {
-          return RowListItem(
-            docs: searchResults[index],
-          );
-        },
-        separatorBuilder: (context, index) {
-          return const Divider(
-            height: 2.0,
-          );
-        },
-      ),
-    );
+    return VerticalListView(resultList: searchResults);
   }
 
   @override

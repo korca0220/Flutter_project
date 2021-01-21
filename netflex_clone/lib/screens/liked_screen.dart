@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:netflex_clone/components/list_item.dart';
+import 'package:netflex_clone/widgets/list_item.dart';
 
 class LikeScreen extends StatefulWidget {
   @override
