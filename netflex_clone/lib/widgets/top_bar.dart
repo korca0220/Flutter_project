@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflex_clone/components/top_bar_container.dart';
 
 class TopBar extends StatelessWidget {
   @override
@@ -14,36 +15,9 @@ class TopBar extends StatelessWidget {
             fit: BoxFit.contain,
             height: 30,
           ),
-          Container(
-            padding: EdgeInsets.only(right: 1),
-            child: Text(
-              'TV 프로그램',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(right: 1),
-            child: Text(
-              '영화',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(right: 1),
-            child: Text(
-              '내가 찜한 컨텐츠',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+          topBarContainer(title: 'TV 프로그램'),
+          topBarContainer(title: '영화'),
+          topBarContainer(title: '드라마'),
         ],
       ),
     );
