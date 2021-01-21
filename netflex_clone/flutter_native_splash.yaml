@@ -1,0 +1,4 @@
+flutter_native_splash:
+  image: images/bbongflix_logo.png
+  color: "#0c0c0d"
+  color_dark: "#0c0c0d"

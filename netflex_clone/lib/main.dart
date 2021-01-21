@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:netflex_clone/screens/home_screen.dart';
-import 'package:netflex_clone/screens/profile_screen.dart';
-import 'package:netflex_clone/screens/search_screen.dart';
-import 'package:netflex_clone/widgets/bottom_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:netflex_clone/screens/liked_screen.dart';
+import 'package:netflex_clone/screens/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,30 +21,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        elevatedButtonTheme: ElevatedButtonThemeData(style: flatButtonStyle),
-        brightness: Brightness.dark,
-        primaryColor: Colors.black,
-        accentColor: Colors.white,
-      ),
-      home: DefaultTabController(
-        length: 4,
-        child: SafeArea(
-          child: Scaffold(
-            body: TabBarView(
-              physics: NeverScrollableScrollPhysics(),
-              children: [
-                HomeScreen(),
-                SearchScreen(),
-                LikeScreen(),
-                ProfileScreen()
-              ],
-            ),
-            bottomNavigationBar: BottomBar(),
-          ),
-        ),
-      ),
-    );
+    return MainScreen(flatButtonStyle: flatButtonStyle);
   }
 }

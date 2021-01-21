@@ -8,7 +8,7 @@ class ImagePopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        height: 450,
+        height: 500,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: image,
