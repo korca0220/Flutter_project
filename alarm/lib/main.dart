@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:alarm/screens/main_screen.dart';
+import 'package:alarm/components/weather.dart';
+import 'package:alarm/screens/loading_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,13 +11,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: MainScreen.id,
-      routes: {MainScreen.id: (context) => MainScreen()},
+    return ChangeNotifierProvider(
+      create: (context) => WeatherModel(),
+      child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: LoadingScreen()),
     );
   }
 }

@@ -1,7 +1,12 @@
+import 'package:alarm/components/weather.dart';
 import 'package:flutter/material.dart';
+import 'package:alarm/widgets/weather_widget.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = "main_screen";
+  final locationWeather;
+
+  MainScreen({@required this.locationWeather});
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -22,22 +27,15 @@ class _MainScreenState extends State<MainScreen> {
         child: Text("tttt"),
       ),
     ),
-    Container(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('서울'),
-            Icon(
-              Icons.wb_cloudy,
-              size: 40,
-            ),
-            Text('흐림')
-          ],
-        ),
-      ),
+    WeatherWidget(
+      locationWeather: widget.locationWeather,
     )
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
