@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return StreamBuilder<QuerySnapshot>(
       stream: streamData,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+        if (!snapshot.hasData) return CircularProgressIndicator();
         return _buildBody(context, snapshot.data.docs);
       },
     );
@@ -37,17 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
       Stack(
         children: [
           Center(
-            child: CarouselImage(
-              movies: movies,
-            ),
+            child: CarouselImage(movies: movies),
           ),
-          TopBar(),
+          TopBar()
         ],
       ),
       CircleSlider(movies: movies),
-      BoxSlider(
-        movies: movies,
-      )
+      BoxSlider(movies: movies)
     ]);
   }
 

@@ -15,7 +15,7 @@ class _LikeScreenState extends State<LikeScreen> {
             .where('like', isEqualTo: true)
             .snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return LinearProgressIndicator();
+          if (!snapshot.hasData) return CircularProgressIndicator();
           return _buildList(context, snapshot.data.docs);
         });
   }
