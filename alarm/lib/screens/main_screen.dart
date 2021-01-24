@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:alarm/widgets/weather_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:alarm/components/weather.dart';
+import 'package:alarm/widgets/alarm_list_widget.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = "main_screen";
@@ -21,14 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  List<Widget> _pages = [
-    Container(
-      child: Center(
-        child: Text("tttt"),
-      ),
-    ),
-    WeatherWidget()
-  ];
+  List<Widget> _pages = [AlarmListWidget(), WeatherWidget()];
 
   @override
   void initState() {
