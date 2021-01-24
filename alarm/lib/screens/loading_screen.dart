@@ -18,17 +18,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void _getLocationData() async {
-    var weatherData = await WeatherModel().getLocationWeather();
+    var locationWeathereData = await WeatherModel().getLocationWeather();
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return MainScreen(locationWeather: weatherData);
+      return MainScreen(
+        locationWeatherData: locationWeathereData,
+      );
     }));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Center(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
         child: SpinKitPulse(
           color: Colors.blueAccent,
           size: 100.0,

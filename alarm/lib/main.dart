@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:alarm/components/weather.dart';
-import 'package:alarm/screens/loading_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'package:alarm/screens/main_screen.dart';
+
+import 'components/weather.dart';
+import 'screens/loading_screen.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,12 +1,12 @@
-import 'package:alarm/components/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:alarm/widgets/weather_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:alarm/components/weather.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = "main_screen";
-  final locationWeather;
-
-  MainScreen({@required this.locationWeather});
+  final locationWeatherData;
+  MainScreen({this.locationWeatherData});
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -27,14 +27,14 @@ class _MainScreenState extends State<MainScreen> {
         child: Text("tttt"),
       ),
     ),
-    WeatherWidget(
-      locationWeather: widget.locationWeather,
-    )
+    WeatherWidget()
   ];
 
   @override
   void initState() {
     super.initState();
+    Provider.of<WeatherModel>(context, listen: false)
+        .updateCurrentWeatherData(widget.locationWeatherData);
   }
 
   @override
