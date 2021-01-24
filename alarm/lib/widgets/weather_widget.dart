@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:alarm/components/weather.dart';
 import 'package:provider/provider.dart';
 
+import 'package:alarm/components/const.dart';
+
 class WeatherWidget extends StatefulWidget {
   @override
   _WeatherWidgetState createState() => _WeatherWidgetState();
@@ -18,24 +20,16 @@ class _WeatherWidgetState extends State<WeatherWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              '서울 ${Provider.of<WeatherModel>(context).temperature}°',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-            ),
+            Text('서울 ${Provider.of<WeatherModel>(context).temperature}°',
+                style: kWeatherTextStyle),
             SizedBox(
               height: 10,
             ),
-            Text(
-              currentConditionIcon,
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-            ),
+            Text(currentConditionIcon, style: kWeatherTextStyle),
             SizedBox(
               height: 10,
             ),
-            Text(
-              currentTempMessage,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            )
+            Text(currentTempMessage, style: kWeatherMessageTextStyle)
           ],
         ),
       ),
