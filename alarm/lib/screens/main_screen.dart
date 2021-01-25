@@ -6,6 +6,7 @@ import 'package:alarm/widgets/alarm_list_widget.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:alarm/widgets/notification_widgets.dart';
+import 'package:alarm/widgets/alarm_add_button.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = "main_screen";
@@ -53,11 +54,10 @@ class _MainScreenState extends State<MainScreen> {
     return page;
   }
 
-  FloatingActionButton getButton() {
+  Widget getButton() {
     Widget button;
     if (_selectedPageIndex == 0) {
-      button =
-          FloatingActionButton(onPressed: () {}, child: Icon(Icons.alarm_add));
+      button = AddAlarmButton();
     } else if (_selectedPageIndex == 1) {
       button = null;
     }
