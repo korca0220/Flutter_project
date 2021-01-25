@@ -1,7 +1,11 @@
 import 'package:alarm/components/weather.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:alarm/widgets/weather_widget.dart';
 import 'package:alarm/widgets/alarm_list_widget.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import 'package:alarm/widgets/notification_widgets.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = "main_screen";
@@ -49,6 +53,75 @@ class _MainScreenState extends State<MainScreen> {
     return page;
   }
 
+  FloatingActionButton getButton() {
+    Widget button;
+    if (_selectedPageIndex == 0) {
+      button =
+          FloatingActionButton(onPressed: () {}, child: Icon(Icons.alarm_add));
+    } else if (_selectedPageIndex == 1) {
+      button = null;
+    }
+    return button;
+  }
+
+  FlutterLocalNotificationsPlugin _flutterLocalNotificationPlugin;
+
+  @override
+  void initState() {
+    super.initState();
+    _localNotificationPluginSettings();
+    _requestPermissions();
+  }
+
+  void _localNotificationPluginSettings() {
+    var androidSetting = AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iosSetting = IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(
+      android: androidSetting,
+      iOS: iosSetting,
+    );
+    _flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
+    _flutterLocalNotificationPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  void _requestPermissions() {
+    _flutterLocalNotificationPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+    _flutterLocalNotificationPlugin
+        .resolvePlatformSpecificImplementation<
+            MacOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+  }
+
+  Future onSelectNotification(String payload) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+              title: Text('Hi'),
+              content: Text('Payload: $payload'),
+              actions: [
+                CupertinoDialogAction(
+                  child: Text('ok'),
+                  isDefaultAction: true,
+                  onPressed: () async {
+                    Navigator.of(context, rootNavigator: true).pop();
+                  },
+                )
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,17 +130,19 @@ class _MainScreenState extends State<MainScreen> {
             "Alarm and Weather",
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.alarm_add),
-        ),
+        floatingActionButton: getButton(),
         bottomNavigationBar: BottomNavigationBar(
           onTap: _onItemTapped,
           currentIndex: _selectedPageIndex,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.alarm), label: "Alarm"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.wb_sunny), label: "Weather"),
+              icon: Icon(Icons.alarm),
+              label: "Alarm",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.wb_sunny),
+              label: "Weather",
+            ),
           ],
         ),
         body: getPage());
