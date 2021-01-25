@@ -11,7 +11,7 @@ class AlarmInfo {
     this._isAlarmOn = on;
   }
 
-  set alaramDate(DateTime date) {
+  set alarmDate(DateTime date) {
     _alarmDate = date;
   }
 

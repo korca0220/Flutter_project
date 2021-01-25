@@ -1,7 +1,12 @@
+import 'package:alarm/widgets/alarm_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:alarm/components/alarm_info.dart';
 
 class AlarmListWidget extends StatefulWidget {
+  final List<AlarmInfo> alarmList;
+  AlarmListWidget({this.alarmList});
+
   @override
   _AlarmListWidgetState createState() => _AlarmListWidgetState();
 }
@@ -11,23 +16,14 @@ class _AlarmListWidgetState extends State<AlarmListWidget> {
   Widget build(BuildContext context) {
     return ListView.separated(
       scrollDirection: Axis.vertical,
-      itemCount: 2,
+      itemCount: widget.alarmList.length,
       itemBuilder: (context, index) {
-        return Container(
-          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-          height: 70,
-          child: Row(
-            children: [
-              Icon(
-                Icons.alarm,
-                size: 40,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text('오후 7:30')
-            ],
-          ),
+        if (widget.alarmList.isEmpty) {
+          return Text('Alarm is empty!');
+        }
+        return AlarmTile(
+          alarmInfo: widget.alarmList,
+          index: index,
         );
       },
       separatorBuilder: (context, index) {
