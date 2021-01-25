@@ -5,33 +5,33 @@ class AlarmInfo {
   TimeOfDay _alarmTime;
   bool _isAlarmOn;
 
-  AlarmInfo(DateTime date, TimeOfDay time, bool on){
-   this._alarmDate = date;
-   this._alarmTime = time;
-   this._isAlarmOn = on;
+  AlarmInfo(DateTime date, TimeOfDay time, bool on) {
+    this._alarmDate = date;
+    this._alarmTime = time;
+    this._isAlarmOn = on;
   }
 
-  set AlarmDate(DateTime date){
+  set alaramDate(DateTime date) {
     _alarmDate = date;
   }
-  set AlarmTime(TimeOfDay time){
+
+  set alarmTime(TimeOfDay time) {
     _alarmTime = time;
   }
 
-  set AlarmOn(bool on){
+  set isAlarmOn(bool on) {
     _isAlarmOn = on;
   }
 
-  get AlarmDate(){
+  DateTime get alarmDate {
     return _alarmDate;
   }
 
-  get AlarmTime(){
+  TimeOfDay get alarmTime {
     return _alarmTime;
   }
 
-  get isAlarmOn(){
+  bool get isAlarmOn {
     return _isAlarmOn;
   }
-
 }
