@@ -1,27 +1,10 @@
 import 'package:alarm/components/network_helper.dart';
 import 'package:alarm/components/location.dart';
-import 'package:flutter/material.dart';
 
 const apikey = "a34d08a1378757bdb49971185eaf046a";
 const openWeatherMapURL = 'https://api.openweathermap.org/data/2.5/weather';
 
-class WeatherModel extends ChangeNotifier {
-  int _condition;
-  int _temperature;
-
-  get condition {
-    return _condition;
-  }
-
-  get temperature {
-    return _temperature;
-  }
-
-  void updateCurrentWeatherData(dynamic weatherData) {
-    _condition = weatherData['weather'][0]['id'];
-    _temperature = weatherData['main']['temp'].toInt();
-  }
-
+class WeatherModel {
   Future<dynamic> getLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
@@ -34,7 +17,8 @@ class WeatherModel extends ChangeNotifier {
     return currentLocationWeather;
   }
 
-  String getWeatherIcon() {
+  String getWeatherIcon(dynamic weatherData) {
+    final int _condition = weatherData['weather'][0]['id'];
     if (_condition < 300) {
       return '🌩';
     } else if (_condition < 400) {
@@ -54,7 +38,8 @@ class WeatherModel extends ChangeNotifier {
     }
   }
 
-  String getMessage() {
+  String getMessage(dynamic weatherData) {
+    final int _temperature = weatherData['main']['temp'].toInt();
     if (_temperature > 25) {
       return 'It\'s 🍦 time';
     } else if (_temperature > 20) {
@@ -64,5 +49,10 @@ class WeatherModel extends ChangeNotifier {
     } else {
       return 'Bring a 🧥 just in case';
     }
+  }
+
+  int getTemperature(dynamic weatherData) {
+    final int _temperature = weatherData['main']['temp'].toInt();
+    return _temperature;
   }
 }
