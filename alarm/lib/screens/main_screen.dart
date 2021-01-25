@@ -94,14 +94,8 @@ class _MainScreenState extends State<MainScreen> {
           badge: true,
           sound: true,
         );
-    _flutterLocalNotificationPlugin
-        .resolvePlatformSpecificImplementation<
-            MacOSFlutterLocalNotificationsPlugin>()
-        ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+    _flutterLocalNotificationPlugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
   }
 
   Future onSelectNotification(String payload) async {
