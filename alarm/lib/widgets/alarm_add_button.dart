@@ -7,34 +7,27 @@ import 'package:provider/provider.dart';
 import 'package:alarm/widgets/notification_widgets.dart';
 
 class AddAlarmButton extends StatefulWidget {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationPlugin;
-  AddAlarmButton({this.flutterLocalNotificationPlugin});
-
+  final int alarmIndex;
+  AddAlarmButton({this.alarmIndex});
   @override
   _AddAlarmButtonState createState() => _AddAlarmButtonState();
 }
 
 class _AddAlarmButtonState extends State<AddAlarmButton> {
   bool _isAlarmOn = false;
-  int _alarmId = 0;
   DateTime _date = DateTime.now();
   TimeOfDay _time = TimeOfDay.now();
-  int _listIndex = 0;
 
   void addItemToList() {
     setState(() {
       _isAlarmOn = true;
       Provider.of<AlarmData>(context, listen: false)
-          .insertAlarmList(_listIndex, AlarmInfo(_date, _time, _isAlarmOn));
-      _listIndex++;
+          .addAlarmList(AlarmInfo(_date, _time, _isAlarmOn, widget.alarmIndex));
     });
   }
 
-  void addNotification(
-      FlutterLocalNotificationsPlugin flutterLocalNotificationPlugin,
-      DateTime date) {
-    dailyAtTimeNotification(flutterLocalNotificationPlugin, date);
-    // showNotification(flutterLocalNotificationPlugin);
+  void addNotification(DateTime date, int id) {
+    dailyAtTimeNotification(date, id);
   }
 
   @override
@@ -52,7 +45,7 @@ class _AddAlarmButtonState extends State<AddAlarmButton> {
                   _date = DateTime(_date.year, _date.month, _date.day,
                       _time.hour, _time.minute);
                   addItemToList();
-                  addNotification(widget.flutterLocalNotificationPlugin, _date);
+                  addNotification(_date, widget.alarmIndex);
                 } else {
                   _time = TimeOfDay.now();
                 }

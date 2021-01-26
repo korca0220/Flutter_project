@@ -21,10 +21,7 @@ class _AlarmListWidgetState extends State<AlarmListWidget> {
             if (alarmData.alarms.isEmpty) {
               return Text('Alarm is empty!');
             }
-            return AlarmTile(
-              alarmInfo: alarmData.alarms,
-              index: index,
-            );
+            return AlarmTile(index: index);
           },
           separatorBuilder: (context, index) {
             return const Divider(

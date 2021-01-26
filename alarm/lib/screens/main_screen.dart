@@ -7,8 +7,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:alarm/widgets/notification_widgets.dart';
 import 'package:alarm/widgets/alarm_add_button.dart';
-import 'package:alarm/components/alarm.dart';
+import 'package:alarm/components/alarm_data.dart';
 import 'package:alarm/widgets/alarm_tile_widget.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = "main_screen";
@@ -22,7 +23,6 @@ class _MainScreenState extends State<MainScreen> {
   String _currentWeatherIcon = '';
   String _currentWeatherMessage = '';
   int _currentTemperature = 0;
-  final List<AlarmInfo> alarmList = <AlarmInfo>[];
 
   void _onItemTapped(int index) async {
     setState(() {
@@ -62,8 +62,7 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       if (_selectedPageIndex == 0) {
         button = AddAlarmButton(
-          flutterLocalNotificationPlugin: _flutterLocalNotificationPlugin,
-        );
+            alarmIndex: Provider.of<AlarmData>(context).alarmCount);
       } else if (_selectedPageIndex == 1) {
         button = null;
       }

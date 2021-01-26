@@ -2,8 +2,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
-Future<void> showNotification(
-    FlutterLocalNotificationsPlugin _flutterLocalNotificationPlugin) async {
+Future<void> showNotification() async {
+  final _flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
   const AndroidNotificationDetails android = AndroidNotificationDetails(
       'your channel id', 'your channel name', 'your channel description',
       importance: Importance.max, priority: Priority.high, ticker: 'ticker');
@@ -14,9 +14,8 @@ Future<void> showNotification(
       .show(0, 'test', 'test', platformChannelSpecifics, payload: 'item x');
 }
 
-Future<void> dailyAtTimeNotification(
-    FlutterLocalNotificationsPlugin _flutterLocalNotificationPlugin,
-    DateTime date) async {
+Future<void> dailyAtTimeNotification(DateTime date, int id) async {
+  final _flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
   const AndroidNotificationDetails android = AndroidNotificationDetails(
       'your channel id', 'your channel name', 'your channel description',
       importance: Importance.max, priority: Priority.high, ticker: 'ticker');
@@ -24,11 +23,16 @@ Future<void> dailyAtTimeNotification(
   const NotificationDetails platformChannelSpecifics =
       NotificationDetails(android: android, iOS: ios);
   await _flutterLocalNotificationPlugin.zonedSchedule(
-      0, 'test', 'test', _setNotiTime(date), platformChannelSpecifics,
+      id, 'test', 'test', _setNotiTime(date), platformChannelSpecifics,
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time);
+}
+
+Future<void> cancelNotification(int id) async {
+  final _flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
+  _flutterLocalNotificationPlugin.cancel(id);
 }
 
 tz.TZDateTime _setNotiTime(DateTime date) {
