@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:alarm/components/picker.dart';
 import 'package:alarm/components/alarm_data.dart';
 import 'package:alarm/components/alarm.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:alarm/widgets/notification_widgets.dart';
 
 class AddAlarmButton extends StatefulWidget {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationPlugin;
+  AddAlarmButton({this.flutterLocalNotificationPlugin});
+
   @override
   _AddAlarmButtonState createState() => _AddAlarmButtonState();
 }
@@ -25,6 +30,13 @@ class _AddAlarmButtonState extends State<AddAlarmButton> {
     });
   }
 
+  void addNotification(
+      FlutterLocalNotificationsPlugin flutterLocalNotificationPlugin,
+      DateTime date) {
+    dailyAtTimeNotification(flutterLocalNotificationPlugin, date);
+    // showNotification(flutterLocalNotificationPlugin);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
@@ -40,6 +52,7 @@ class _AddAlarmButtonState extends State<AddAlarmButton> {
                   _date = DateTime(_date.year, _date.month, _date.day,
                       _time.hour, _time.minute);
                   addItemToList();
+                  addNotification(widget.flutterLocalNotificationPlugin, _date);
                 } else {
                   _time = TimeOfDay.now();
                 }

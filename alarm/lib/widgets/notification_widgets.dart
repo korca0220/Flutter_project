@@ -15,7 +15,8 @@ Future<void> showNotification(
 }
 
 Future<void> dailyAtTimeNotification(
-    FlutterLocalNotificationsPlugin _flutterLocalNotificationPlugin) async {
+    FlutterLocalNotificationsPlugin _flutterLocalNotificationPlugin,
+    DateTime date) async {
   const AndroidNotificationDetails android = AndroidNotificationDetails(
       'your channel id', 'your channel name', 'your channel description',
       importance: Importance.max, priority: Priority.high, ticker: 'ticker');
@@ -23,20 +24,19 @@ Future<void> dailyAtTimeNotification(
   const NotificationDetails platformChannelSpecifics =
       NotificationDetails(android: android, iOS: ios);
   await _flutterLocalNotificationPlugin.zonedSchedule(
-      0, 'test', 'test', _setNotiTime(), platformChannelSpecifics,
+      0, 'test', 'test', _setNotiTime(date), platformChannelSpecifics,
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time);
 }
 
-tz.TZDateTime _setNotiTime() {
+tz.TZDateTime _setNotiTime(DateTime date) {
   tz.initializeTimeZones();
   tz.setLocalLocation(tz.getLocation('Asia/Seoul'));
 
   final now = tz.TZDateTime.now(tz.local);
-  var scheduledDate =
-      tz.TZDateTime(tz.local, now.year, now.month, now.day, 10, 0);
+  tz.TZDateTime scheduledDate = tz.TZDateTime.from(date, tz.local);
 
   return scheduledDate;
 }

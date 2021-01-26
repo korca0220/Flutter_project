@@ -61,7 +61,9 @@ class _MainScreenState extends State<MainScreen> {
     Widget button;
     setState(() {
       if (_selectedPageIndex == 0) {
-        button = AddAlarmButton();
+        button = AddAlarmButton(
+          flutterLocalNotificationPlugin: _flutterLocalNotificationPlugin,
+        );
       } else if (_selectedPageIndex == 1) {
         button = null;
       }
