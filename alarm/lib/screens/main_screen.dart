@@ -7,7 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:alarm/widgets/notification_widgets.dart';
 import 'package:alarm/widgets/alarm_add_button.dart';
-import 'package:alarm/components/alarm_info.dart';
+import 'package:alarm/components/alarm.dart';
 import 'package:alarm/widgets/alarm_tile_widget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -46,26 +46,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget getPage() {
     Widget page;
     if (_selectedPageIndex == 0) {
-      page = ListView.separated(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: alarmList.length,
-        itemBuilder: (context, index) {
-          if (alarmList.isEmpty) {
-            return Text('Alarm is empty!');
-          }
-          return AlarmTile(
-            alarmInfo: alarmList,
-            index: index,
-          );
-        },
-        separatorBuilder: (context, index) {
-          return const Divider(
-            color: Colors.blue,
-            height: 2.0,
-          );
-        },
-      );
+      page = AlarmListWidget();
     } else if (_selectedPageIndex == 1) {
       page = WeatherWidget(
         weatherIconString: _currentWeatherIcon,
@@ -80,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
     Widget button;
     setState(() {
       if (_selectedPageIndex == 0) {
-        button = AddAlarmButton(alarmList: alarmList);
+        button = AddAlarmButton();
       } else if (_selectedPageIndex == 1) {
         button = null;
       }

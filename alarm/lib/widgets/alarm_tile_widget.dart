@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:alarm/components/alarm_info.dart';
+import 'package:alarm/components/alarm.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 

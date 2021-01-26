@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:alarm/components/picker.dart';
-import 'package:alarm/components/alarm_info.dart';
+import 'package:alarm/components/alarm_data.dart';
+import 'package:alarm/components/alarm.dart';
+import 'package:provider/provider.dart';
 
 class AddAlarmButton extends StatefulWidget {
-  final List<AlarmInfo> alarmList;
-  BuildContext context;
-  AddAlarmButton({this.alarmList, this.context});
-
   @override
   _AddAlarmButtonState createState() => _AddAlarmButtonState();
 }
@@ -21,7 +19,8 @@ class _AddAlarmButtonState extends State<AddAlarmButton> {
   void addItemToList() {
     setState(() {
       _isAlarmOn = true;
-      widget.alarmList.insert(_listIndex, AlarmInfo(_date, _time, _isAlarmOn));
+      Provider.of<AlarmData>(context, listen: false)
+          .insertAlarmList(_listIndex, AlarmInfo(_date, _time, _isAlarmOn));
       _listIndex++;
     });
   }
