@@ -1,4 +1,5 @@
 import 'package:alarm/components/alarm_data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:alarm/components/alarm.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -30,7 +31,9 @@ class _AlarmTileState extends State<AlarmTile> {
     }
     _isChecked = currentAlarm[widget.index].isAlarmOn;
     final f = new DateFormat('yyyy-MM-dd H:mm');
-    int counterForAlarmOn = 0;
+    var _alarmId = currentAlarm[widget.index].alarmId;
+    var _alarmDate = currentAlarm[widget.index].alarmDate;
+    var _alarm = currentAlarm[widget.index];
     return ListTile(
       leading: Icon(
         Icons.alarm,
@@ -46,17 +49,44 @@ class _AlarmTileState extends State<AlarmTile> {
           });
           Provider.of<AlarmData>(context, listen: false)
               .alarms[widget.index]
-              .isAlarmOn = !currentAlarm[widget.index].isAlarmOn;
-          var _alarmId = currentAlarm[widget.index].alarmId;
-          var _alarmDate = currentAlarm[widget.index].alarmDate;
+              .isAlarmOn = _isChecked;
           if (Provider.of<AlarmData>(context, listen: false)
               .alarms[widget.index]
               .isAlarmOn) {
-            //TODO : add alarm
-            dailyAtTimeNotification(_alarmDate, _alarmId);
-            logger.d('add alarmId : ${_alarmId}');
+            if (_alarmDate.isBefore(DateTime.now())) {
+              logger.d('date time is before');
+              Provider.of<AlarmData>(context, listen: false)
+                  .alarms[widget.index]
+                  .isAlarmOn = false;
+              showDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  content: Text(
+                    '이미 지난 알람입니다\n알람을 삭제합니다',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  actions: [
+                    CupertinoDialogAction(
+                      child: Text('OK'),
+                      isDefaultAction: true,
+                      onPressed: () {
+                        Navigator.of(context, rootNavigator: true).pop();
+                        Provider.of<AlarmData>(context, listen: false)
+                            .deleteAlarm(_alarm);
+                        cancelNotification(_alarmId);
+                      },
+                    )
+                  ],
+                ),
+              );
+            } else {
+              dailyAtTimeNotification(_alarmDate, _alarmId);
+              logger.d('add alarmId : ${_alarmId}');
+            }
           } else {
-            //TODO : alarm cancel
             cancelNotification(_alarmId);
             logger.d('canceled alarmId : ${_alarmId}');
           }
