@@ -1,3 +1,6 @@
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:alarm/components/weather.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +8,9 @@ import 'package:alarm/widgets/weather_widget.dart';
 import 'package:alarm/widgets/alarm_list_widget.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'package:alarm/widgets/notification_widgets.dart';
 import 'package:alarm/widgets/alarm_add_button.dart';
 import 'package:alarm/components/alarm_data.dart';
-import 'package:alarm/widgets/alarm_tile_widget.dart';
+import 'package:alarm/components/set_rebirth.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
@@ -116,6 +118,9 @@ class _MainScreenState extends State<MainScreen> {
                   isDefaultAction: true,
                   onPressed: () async {
                     Navigator.of(context, rootNavigator: true).pop();
+                    SendPort sendPort =
+                        IsolateNameServer.lookupPortByName('rebirth');
+                    sendPort.send('start');
                   },
                 )
               ],
@@ -124,7 +129,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('main bulild on');
+    setRebirth(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(

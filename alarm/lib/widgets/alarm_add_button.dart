@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:alarm/components/picker.dart';
 import 'package:alarm/components/alarm_data.dart';
 import 'package:alarm/components/alarm.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:alarm/widgets/notification_widgets.dart';
 
