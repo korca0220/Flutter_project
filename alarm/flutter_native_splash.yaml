@@ -1,0 +1,5 @@
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: images/Alarm.png
+  ios_content_mode: scaleAspectFit
+  fill : false

@@ -92,7 +92,31 @@ class _AlarmTileState extends State<AlarmTile> {
           }
         },
       ),
-      onLongPress: () async {},
+      onLongPress: () async {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('알람 삭제'),
+                  content: Text('알람을 삭제하시겠습니까?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        cancelNotification(_alarmId);
+                        Provider.of<AlarmData>(context, listen: false)
+                            .deleteAlarm(_alarm);
+                        Navigator.pop(context);
+                      },
+                      child: Text('YES'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("NO"),
+                    )
+                  ],
+                ));
+      },
     );
   }
 }
