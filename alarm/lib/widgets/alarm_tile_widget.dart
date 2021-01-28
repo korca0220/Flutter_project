@@ -1,8 +1,7 @@
 import 'package:alarm/components/alarm_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:alarm/components/alarm.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'package:alarm/widgets/alarm_alert_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:alarm/widgets/notification_widgets.dart';
@@ -58,29 +57,21 @@ class _AlarmTileState extends State<AlarmTile> {
               Provider.of<AlarmData>(context, listen: false)
                   .alarms[widget.index]
                   .isAlarmOn = false;
-              showDialog(
-                context: context,
-                builder: (context) => CupertinoAlertDialog(
-                  content: Text(
-                    '이미 지난 알람입니다\n알람을 삭제합니다',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+              AlarmAlertDialog(
+                title: '알람 삭제',
+                content: '이미 지난 알람입니다\n알람을 삭제합니다',
+                actions: [
+                  CupertinoDialogAction(
+                    child: Text('OK'),
+                    isDefaultAction: true,
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                      Provider.of<AlarmData>(context, listen: false)
+                          .deleteAlarm(_alarm);
+                      cancelNotification(_alarmId);
+                    },
                   ),
-                  actions: [
-                    CupertinoDialogAction(
-                      child: Text('OK'),
-                      isDefaultAction: true,
-                      onPressed: () {
-                        Navigator.of(context, rootNavigator: true).pop();
-                        Provider.of<AlarmData>(context, listen: false)
-                            .deleteAlarm(_alarm);
-                        cancelNotification(_alarmId);
-                      },
-                    )
-                  ],
-                ),
+                ],
               );
             } else {
               dailyAtTimeNotification(_alarmDate, _alarmId);
@@ -94,28 +85,29 @@ class _AlarmTileState extends State<AlarmTile> {
       ),
       onLongPress: () async {
         showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('알람 삭제'),
-                  content: Text('알람을 삭제하시겠습니까?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        cancelNotification(_alarmId);
-                        Provider.of<AlarmData>(context, listen: false)
-                            .deleteAlarm(_alarm);
-                        Navigator.pop(context);
-                      },
-                      child: Text('YES'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text("NO"),
-                    )
-                  ],
-                ));
+          context: context,
+          builder: (context) => AlarmAlertDialog(
+            title: '알람 삭제',
+            content: '알람을 삭제하시겠습니까?',
+            actions: [
+              TextButton(
+                onPressed: () {
+                  cancelNotification(_alarmId);
+                  Provider.of<AlarmData>(context, listen: false)
+                      .deleteAlarm(_alarm);
+                  Navigator.pop(context);
+                },
+                child: Text('YES'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("NO"),
+              )
+            ],
+          ),
+        );
       },
     );
   }

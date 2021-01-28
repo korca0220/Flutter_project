@@ -39,12 +39,9 @@ class _AlarmScreenState extends State<AlarmScreen> {
                 }
               }
               dateList.sort((a, b) => a.alarmDate.compareTo(b.alarmDate));
-              print(alarmData.alarmCount);
               var _latestTimeData = dateList[0];
-              print(_latestTimeData.alarmDate);
               cancelNotification(_latestTimeData.alarmId);
               alarmData.deleteAlarm(_latestTimeData);
-              print(alarmData.alarmCount);
               Navigator.pop(context);
             },
           ),
