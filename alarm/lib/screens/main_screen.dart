@@ -107,24 +107,9 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future onSelectNotification(String payload) async {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              title: Text('Hi'),
-              content: Text('Payload: $payload'),
-              actions: [
-                CupertinoDialogAction(
-                  child: Text('ok'),
-                  isDefaultAction: true,
-                  onPressed: () async {
-                    Navigator.of(context, rootNavigator: true).pop();
-                    SendPort sendPort =
-                        IsolateNameServer.lookupPortByName('rebirth');
-                    sendPort.send('start');
-                  },
-                )
-              ],
-            ));
+    Navigator.of(context, rootNavigator: true).pop();
+    SendPort sendPort = IsolateNameServer.lookupPortByName('rebirth');
+    sendPort.send('start');
   }
 
   @override
